@@ -6,7 +6,7 @@ public class CpuScheduling {
     
     
     public static void main(String[] args) {
-
+        displayUserOptions();
     }
 
     public void chooseOption(){

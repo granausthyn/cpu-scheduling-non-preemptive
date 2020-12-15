@@ -1,3 +1,5 @@
+// FCFS algo
+
 import java.util.Scanner;  
 
 public class FCFS{
