@@ -3,12 +3,19 @@ import java.text.DecimalFormat;
 
 public class CpuScheduling {
     static Scanner userInput = new Scanner(System.in);
-    private static DecimalFormat df = new DecimalFormat("0.00"); // used to format avg wt or avg tat to "0.00"
+    private static DecimalFormat df = new DecimalFormat("0.00"); //format display output for certain variables needed with decimal values
+    String stringInput;
     public static void main(String[] args) {
+        
         computeFCFS();
     }
 
-    static void userOptions(){
+    public void chooseOption(){
+        System.out.print("Choose Algorithm: ");
+        stringInput = userInput.nextLine();
+    }
+
+    static void displayUserOptions(){
 
         System.out.println("\nChoose CPU Scheduling [Non-Preemptive]Algorithm: ");
         System.out.println("[A] First Come First Serve Scheduling (FCFS)");
@@ -17,7 +24,8 @@ public class CpuScheduling {
         System.out.println("[D] Deadline");
         System.out.println("[E] (MLQ)");
         System.out.println("[G] Exit\n");
-        System.out.print("Choose Algorithm: ");
+        
+        
     }
 
     private static void computeFCFS() {
@@ -82,10 +90,10 @@ public class CpuScheduling {
 
         }
           //print output table
-          System.out.println("\nProcess     AT     BT      CT      TAT      WT");
+          System.out.println("\nProcess\t\tAT\tBT\tCT\tTAT\tWT");
           for (int i = 0; i < inputProcess; i++){
-              System.out.println(processId[i] + " \t\t\t" + arrivalTime[i] + "\t\t" + burstTime[i] + "\t\t" +
-                      completionTime[i] + "\t\t" + turnAroundTime[i] + "\t\t"  + waitingTime[i]);
+              System.out.println(processId[i] + " \t\t" + arrivalTime[i] + "\t" + burstTime[i] + "\t" +
+                      completionTime[i] + "\t" + turnAroundTime[i] + "\t"  + waitingTime[i]);
           }
   
           userInput.close();
