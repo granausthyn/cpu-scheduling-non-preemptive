@@ -119,8 +119,9 @@ public class FCFS{
 
 
             
-
+            sc.close();
         }
+        
     } 
     
 
