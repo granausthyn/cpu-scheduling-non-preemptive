@@ -102,8 +102,11 @@ public class FCFS{
             //reading the number of elements from the that we want to enter  
             n=sc.nextInt();  
             
-            int process[] = new int[n];
-            int processesLength = process.length;  
+            int processID[] = new int[n];
+            for(int i = 0; i < 5; i++){
+                processID[i] = (i+1);
+            }
+            int processesLength = processID.length;  
             int burstTime[] = new int[n];
             int arrivalTime[] = new int[n];
            
@@ -115,7 +118,7 @@ public class FCFS{
                 burstTime[ctr] = sc.nextInt();
                 
             }
-            findavgTime(process, processesLength, burstTime, arrivalTime);  
+            findavgTime(processID, processesLength, burstTime, arrivalTime);  
 
 
             
