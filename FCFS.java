@@ -103,7 +103,7 @@ public class FCFS{
             n=sc.nextInt();  
             
             int processID[] = new int[n];
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < n; i++){
                 processID[i] = (i+1);
             }
             int processesLength = processID.length;  
