@@ -1,6 +1,6 @@
 
 class SJF{
-
+    //global variables
     int [] processId;
     int [] arrivalTime;
     int [] burstTime;
@@ -12,6 +12,10 @@ class SJF{
     int time;
     int process;
     double sum;
+    
+    public static void main(String[] args) {
+        
+    }
 
    public SJF(int pID[], int aT[],int bT[],int tempVal[],int cT[], int tAT[],int wT[],int rQ[],int p, int t,double s){
        //set constructor for input to globally set variables
@@ -34,7 +38,7 @@ class SJF{
    void displayTable(){
        System.out.println();
        System.out.println("SJF");
-       System.out.println("pID\tAT\tbT\tcT\ttAT\twT");
+       System.out.println("pID\tAT\tBT\tCT\tTAT\tWT");
        System.out.println("--------------------------------------------------");
        for(int i = 0; i<process;i++){
        System.out.println("P" + processId[i] + "\t" + arrivalTime[i] + "\t" + tempVal   [i] +"\t" + completionTime[i]
