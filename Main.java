@@ -29,11 +29,10 @@ public class Main {
     static int startTime = 0;
     static int check = 0;
 
+    static int executeAgain;
+
     public static void main(final String args[]) {
-        answer = "Y";
-        //while answer is Yes, execute the program
-        //else, terminate
-        while (answer.equalsIgnoreCase("Y")) {
+        do{
             //Gather needed data from the user
             getNumberOfProcess();
             getArrivalTime();
@@ -42,10 +41,23 @@ public class Main {
             displayChoices();
             //get user input
             getAlgorithm();
-            selectAlgorith();
-            termination();
-        }
+            selectAlgorithm();
+
+            System.out.print("Would you like run the choices again?[Y/N]: ");
+            answer = scan.next();
+
+            if(answer.equalsIgnoreCase("y")){
+                executeAgain = 1;
+                answer = "";
+            }else{
+                executeAgain = 0;
+            }
+            
+        }while(executeAgain==1);
+        //while user inputs y, execute the program again
+        //else, terminate
         scan.close();
+        System.out.println("Thank you for using our program......\n***Program terminated***"); 
     }
 
     //display Algorithm Choices
@@ -68,7 +80,7 @@ public class Main {
         algorithm.equalsIgnoreCase("D") || algorithm.equalsIgnoreCase("E") || algorithm.equalsIgnoreCase("F")){
             if(algorithm.equalsIgnoreCase("F")){
                 //if user chooses F, the program will terminate
-                System.out.println("Terminating Program.........");
+                System.out.println("Thank you for using our program......\n***Program terminated***"); 
                 System.exit(0);
             }
             //if answer is A-E, proceed with program
@@ -82,7 +94,7 @@ public class Main {
         System.out.println();
     }
 
-    static void selectAlgorith(){
+    static void selectAlgorithm(){
         switch (algorithm) {
             
             case "A": //if answer = a or A, create an object of FCFS class
@@ -126,29 +138,6 @@ public class Main {
                 break;
         }
     }
-    //default option every after execution
-    static void termination(){
-
-        System.out.print("Input again (y/n)?: ");
-        answer = scan.next().toUpperCase();
-        //if answer = y, Y, n, or N, proceed
-        if(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N")){
-            
-            if(answer.equalsIgnoreCase("N")){
-                //if answer is n or N,terminate the program
-                System.out.println();
-                System.out.println("Terminating Program.........");
-                System.exit(0);
-            }
-        }
-        //if answer is not y,Y,n, or N, reiterate the method
-        else{
-            termination();
-        }
-        System.out.println();
-    }
-
-
     static void getNumberOfProcess(){
         System.out.print("Input number of processes [2-9]: ");
         boolean done = true;
