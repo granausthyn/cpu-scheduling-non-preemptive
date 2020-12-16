@@ -1,121 +1,147 @@
-// FCFS algo
-
-import java.util.Scanner;  
-
 public class FCFS{
 
+	int [] processId;
+	int [] arrivalTime;
+	int [] burstTime;
+	int [] completionTime ;
+	int [] turnAroundTime;
+	int [] waitingTime;
+	int [] readyQueue;
+	int [] temp;
+	int time;
+	int process;
+	double sum;
 
-    public FCFS(int[] processId, int[] arrivalTime, int[] burstTime, int[] temp, int[] completionTime,
-			int[] turnAroundTime, int[] waitingTime, int[] readyQueue, int process, int time, double sum) {
+   public FCFS(int pid[], int at[],int bt[],int temp[],int ct[], int tat[],int wt[],int rq[],int p, int t,double s){
+		   this.processId = pid;
+		   this.arrivalTime = at;
+		   this.burstTime = bt;
+		   this.temp = temp;
+		   this.completionTime = ct;
+		   this.turnAroundTime = tat;
+		   this.waitingTime = wt;
+		   this.readyQueue = rq;
+		   this.process = p;
+		   this.time = t;
+		   this.sum = s;
+   }    
+
+   	//sort process by arrival time using bubblesort algorithm
+	 void sortArrivalTime()
+	    {
+	        for (int i = 0; i < process; i++) 
+	        {
+	            for (int j = 0; j < process - i - 1; j++) 
+	            {
+	                if (arrivalTime[j] > arrivalTime[j + 1]) 
+	                {
+	                    int temp = arrivalTime[j];
+	                    arrivalTime[j] = arrivalTime[j + 1];
+	                    arrivalTime[j + 1] = temp;
+	                    
+	                    temp = burstTime[j];
+	                    burstTime[j] = burstTime[j + 1];
+						burstTime[j + 1] = temp;
+						
+						temp = processId[j];
+						processId[j] = processId[j + 1];
+	                    processId[j + 1] = temp;
+						
+						
+	                }
+	            }
+	        }
+		}
+
+		//sort process by priority id using bubblesort algorithm
+		void sortPriorityId()
+	    {
+	        for (int i = 0; i < process; i++) 
+	        {
+	            for (int j = 0; j < process - i - 1; j++) 
+	            {
+					//if j index is greater than (j+1) index, do swap
+	                if (processId[j] > processId[j + 1]) 
+	                {
+	                    int temp = arrivalTime[j];
+	                    arrivalTime[j] = arrivalTime[j + 1];
+	                    arrivalTime[j + 1] = temp;
+	                    
+	                    temp = burstTime[j];
+	                    burstTime[j] = burstTime[j + 1];
+						burstTime[j + 1] = temp;
+						
+						temp = processId[j];
+						processId[j] = processId[j + 1];
+						processId[j + 1] = temp;
+
+						temp = completionTime[j];
+						completionTime[j] = completionTime[j + 1];
+						completionTime[j + 1] = temp;
+						
+						temp = turnAroundTime[j];
+						turnAroundTime[j] = turnAroundTime[j + 1];
+						turnAroundTime[j + 1] = temp;
+						
+						temp = waitingTime[j];
+						waitingTime[j] = waitingTime[j + 1];
+	                    waitingTime[j + 1] = temp;
+	                    
+	                }
+	            }
+	        }
+	    }
+
+		void getRunningProcess()
+	    {
+			//sort process by AT
+			sortArrivalTime();
+			
+			//compute for CT, TAT, & WT 
+	        completionTime[0] = arrivalTime[0] + burstTime[0];
+	        turnAroundTime[0] = completionTime[0] - arrivalTime[0];
+			waitingTime[0] = turnAroundTime[0] - burstTime[0];
+			int idle;
+	        for (int i = 0; i < process-1; i++) 
+	        {
+				if(completionTime[i]>=arrivalTime[i+1]){
+					completionTime[i+1] = burstTime[i+1] + completionTime[i];
+				}
+				else{
+					//if arrival time of next process is less than CT of previous one, add idle time
+					idle = arrivalTime[i+1] - completionTime[i];
+					completionTime[i+1] += idle + completionTime[i] + burstTime[i+1];
+				}
+					turnAroundTime[i+1] = completionTime[i+1] - arrivalTime[i+1];
+					waitingTime[i+1] = turnAroundTime[i+1] - burstTime[i+1];
+			}
+			//sort the processes by priority id
+			sortPriorityId();
+
+			//display computed CT,TAT and WT
+			displayTable();
+		}
+
+		void displayTable(){
+			System.out.println();
+			System.out.println("FCFS");
+			System.out.println("PID\tAT\tBT\tCT\tTAT\tWT");
+			System.out.println("--------------------------------------------------");
+			for(int i = 0; i<process;i++){
+			System.out.println("P" + processId[i] + "\t" + arrivalTime[i] + "\t" + temp[i] +"\t" + completionTime[i]
+			+ "\t" + turnAroundTime[i] + "\t" + waitingTime[i]);
+			System.out.println("--------------------------------------------------");
+			}	
+			System.out.println("Average Turn-around Time:\t" + String.format("%.2f", computeAverage(turnAroundTime)) + " units");
+			System.out.println("Average Waiting Time:\t\t" +String.format("%.2f", computeAverage(waitingTime))+ " units");
+			System.out.println();
+		}
+
+		double computeAverage(int array[]){
+			sum = 0;
+			for(int num: array){
+				sum += num;
+			}
+			return sum/process;
+		}
 	}
-
-	// Function to find the waiting time for all 
-    // processes 
-    static void findWaitingTime(int processes[], int n, int burstTime[], int waitingTime[], int arrivalTime[]) 
-    { 
-        int serviceTime[] = new int[n]; 
-        serviceTime[0] = 0; 
-        waitingTime[0] = 0; 
-    
-        // calcularrivalTimeing waiting time 
-        for (int i = 1; i < n ; i++) 
-        { 
-            //representing wasted time in queue
-            int wasted=0;
-            // Add burst time of previous processes 
-            serviceTime[i] = serviceTime[i-1] + burstTime[i-1]; 
-    
-            // Find waiting time for current process = 
-            // sum - arrivalTime[i] 
-            waitingTime[i] = serviceTime[i] - arrivalTime[i]; 
-    
-            // If waiting time for a process is in negarrivalTimeive 
-            // tharrivalTime means it is already in the ready queue 
-            // before CPU becomes idle so its waiting time is 0 
-            // wasted time is basically time for process to wait after a process is over
-            if (waitingTime[i] < 0) {
-                wasted = Math.abs(waitingTime[i]);
-                waitingTime[i] = 0; 
-            }
-            //Add wasted time
-            serviceTime[i] = serviceTime[i] + wasted;
-        } 
-    } 
-    
-    // Function to calcularrivalTimee turn around time 
-    static void findTurnAroundTime(int processes[], int n, int burstTime[], 
-                                        int waitingTime[], int tarrivalTime[]) 
-    { 
-        // CalcularrivalTimeing turnaround time by adding burstTime[i] + waitingTime[i] 
-        for (int i = 0; i < n ; i++) 
-            tarrivalTime[i] = burstTime[i] + waitingTime[i]; 
-    } 
-    
-    // Function to calcularrivalTimee average waiting and turn-around 
-    // times. 
-    static void findavgTime(int processes[], int n, int burstTime[], int arrivalTime[]) 
-    { 
-        int waitingTime[] = new int[n], tarrivalTime[] = new int[n]; 
-    
-        // Function to find waiting time of all processes 
-        findWaitingTime(processes, n, burstTime, waitingTime, arrivalTime); 
-    
-        // Function to find turn around time for all processes 
-        findTurnAroundTime(processes, n, burstTime, waitingTime, tarrivalTime); 
-    
-        // Display processes along with all details 
-        System.out.print("Processes " + " Burst Time " + " Arrival Time "
-            + " Waiting Time " + " Turn-Around Time "
-            + " Completion Time \n"); 
-        int total_waitingTime = 0, total_tarrivalTime = 0; 
-        for (int i = 0 ; i < n ; i++) 
-        { 
-            total_waitingTime = total_waitingTime + waitingTime[i]; 
-            total_tarrivalTime = total_tarrivalTime + tarrivalTime[i]; 
-            int compl_time = tarrivalTime[i] + arrivalTime[i]; 
-            System.out.println(i+1 + "\t\t" + burstTime[i] + "\t\t"
-                + arrivalTime[i] + "\t\t" + waitingTime[i] + "\t\t "
-                + tarrivalTime[i] + "\t\t " + compl_time); 
-        } 
-    
-        System.out.print("Average waiting time = "
-            + (float)total_waitingTime / (float)n); 
-        System.out.print("\nAverage turn around time = "
-            + (float)total_tarrivalTime / (float)n); 
-    } 
-    
-    // Driver code 
-    
-        public static void main(String args[]) { 
-        takeInput();
-        }
-
-        static void takeInput(){
-            int n;  
-            Scanner sc=new Scanner(System.in);  
-            System.out.print("Input number of Processes: ");  
-            //reading the number of elements from the that we want to enter  
-            n=sc.nextInt();  
-            
-            int processID[] = new int[n];
-            for(int i = 0; i < n; i++){
-                processID[i] = (i+1);
-            }
-
-            int processesLength = processID.length;  
-            int burstTime[] = new int[n];
-            int arrivalTime[] = new int[n];
-
-            for(int ctr = 0; ctr<n; ctr++){
-                System.out.print("Enter process " + (ctr+1) + " arrival time: ");
-                arrivalTime[ctr] = sc.nextInt();
-                System.out.print("Enter process " + (ctr+1) + " burst time: ");
-                burstTime[ctr] = sc.nextInt();
-            }
-            findavgTime(processID, processesLength, burstTime, arrivalTime);  
-            sc.close();
-        }
-    } 
-    
-
-    
