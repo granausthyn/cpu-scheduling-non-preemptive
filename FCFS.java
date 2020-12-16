@@ -83,18 +83,7 @@ public class FCFS{
     // Driver code 
     
         public static void main(String args[]) { 
-            // Process id's 
-        //int processes[] = {1, 2, 3}; 
-        //int n = processes.length; 
-    
-        // Burst time of all processes 
-        //int burst_time[] = {5, 9, 6}; 
-    
-        // Arrival time of all processes 
-        //int arrival_time[] = {0, 3, 6}; 
         takeInput();
-       
-    
         }
 
         static void takeInput(){
@@ -108,25 +97,20 @@ public class FCFS{
             for(int i = 0; i < n; i++){
                 processID[i] = (i+1);
             }
+
             int processesLength = processID.length;  
             int burstTime[] = new int[n];
             int arrivalTime[] = new int[n];
-           
 
             for(int ctr = 0; ctr<n; ctr++){
                 System.out.print("Enter process " + (ctr+1) + " arrival time: ");
                 arrivalTime[ctr] = sc.nextInt();
                 System.out.print("Enter process " + (ctr+1) + " burst time: ");
                 burstTime[ctr] = sc.nextInt();
-                
             }
             findavgTime(processID, processesLength, burstTime, arrivalTime);  
-
-
-            
             sc.close();
         }
-        
     } 
     
 
