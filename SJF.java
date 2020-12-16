@@ -1,21 +1,33 @@
+import java.util.*;
 
 class SJF{
+    static Scanner sc = new Scanner(System.in);
+
     //global variables
-    int [] processId;
-    int [] arrivalTime;
-    int [] burstTime;
-    int [] completionTime ;
-    int [] turnAroundTime;
-    int [] waitingTime;
-    int [] readyQueue;
-    int [] tempVal  ;
-    int time;
-    int process;
-    double sum;
+    static int [] processId;
+    static int [] arrivalTime;
+    static int [] burstTime;
+    static int [] completionTime ;
+    static int [] turnAroundTime;
+    static int [] waitingTime;
+    static int [] readyQueue;
+    static int [] tempVal  ;
+    static int time;
+    static int process;
+    static double sum;
+
+    //deadline priority count period array flags tempPeriod queuePriority startingTime temp
+    static int[] deadline, priority, count, period, array, flags, tempPeriod, queuePriority, startingTime, temp;
     
     public static void main(String[] args) {
-        
+        runCode();
     }
+
+    static void runCode(){
+         SJF sjf = new SJF();
+        getNumberOfProcess();
+        sjf.getRunningProcess(); 
+}
 
    public SJF(int pID[], int aT[],int bT[],int tempVal[],int cT[], int tAT[],int wT[],int rQ[],int p, int t,double s){
        //set constructor for input to globally set variables
@@ -141,4 +153,46 @@ class SJF{
        }
        return sum/process;
    }
+
+   static void getNumberOfProcess(){
+    System.out.print("Input number of processes [2-9]: ");
+    boolean done = true;
+    while (done) {  //if input is invalid, ask for input again
+        if (sc.hasNextInt()){
+            process = sc.nextInt();
+            if(process<2 || process>9){
+                getNumberOfProcess();
+            }
+            done = false;
+        }
+        else {
+            System.out.print("ENTER VALID NUMBER FROM 2 TO 9: ");
+            sc.next();
+            continue;
+        }
+    }
+    
+    //insantiate all needed variables
+    processId= new int [process];
+    arrivalTime= new int [process];
+    burstTime= new int [process];
+    deadline = new int [process];
+    priority = new int [process];
+    count= new int [process];
+    period = new int [process];
+    array = new int [process];
+    flags = new int [process];
+    tempPeriod = new int [process];
+    queuePriority = new int [process];
+    startingTime = new int [process];
+    completionTime= new int [process];
+    readyQueue = new int[process];
+    turnAroundTime= new int [process];
+    waitingTime= new int [process];
+    temp = new int [process];
+
+    
+
+}
+
 }
