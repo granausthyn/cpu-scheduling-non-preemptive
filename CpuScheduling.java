@@ -3,13 +3,32 @@ import java.util.*;
 public class CpuScheduling {
 
     static Scanner sc = new Scanner(System.in);
-    static String answer, inputAlgorithm = "";
+    static String answer, inputAlgorithm = "",tryAgainInput = "";
+    static int tryAgainChoice;
+    static boolean tryAgainValue;
 
     
     
     public static void main(String[] args) {
-        displayUserOptions();
-        chooseAlgorithm();
+
+        do
+        {
+            displayUserOptions();
+            chooseAlgorithm();
+        
+           System.out.print("Would you like run the choices again?[Y/N]: ");
+           tryAgainInput = sc.next();
+
+           if(tryAgainInput.equalsIgnoreCase("y")){
+            tryAgainChoice = 1;
+           }else{
+            tryAgainChoice = 0;
+           }
+        
+        }
+        while(tryAgainChoice==1);
+        System.out.println("Thank you for using our program......\n***Program terminated***"); 
+
     }
 
     static void displayUserOptions(){
@@ -28,7 +47,7 @@ public class CpuScheduling {
 
         boolean isChoice = false;
         //validate user input to enter correct option. system will loop if user input does not match the given choices.
-        
+
         do{
             System.out.print("Enter Choice: ");
             inputAlgorithm = sc.next().toUpperCase();
@@ -37,7 +56,7 @@ public class CpuScheduling {
             inputAlgorithm.equalsIgnoreCase("D") || inputAlgorithm.equalsIgnoreCase("E") || inputAlgorithm.equalsIgnoreCase("F")){
                 if(inputAlgorithm.equalsIgnoreCase("F")){
                     //if user chooses F, the program will terminate
-                    System.out.println("Terminating Program.........");
+                    System.out.println("Thank you for using our program......\n***Program terminated***");
                     System.exit(0);
                 }
                 //if answer is A-E, proceed with program
@@ -57,6 +76,7 @@ public class CpuScheduling {
 
             case "A": //if answer = a or A, create an object of FCFS class
                 System.out.println("First Come First Serve");
+
                 break;
             case "B":  //if answer = b or B, create an object of SJF class
             System.out.println("Shortest Job First");
@@ -79,6 +99,5 @@ public class CpuScheduling {
         }
         System.out.println();
     }
-
 
 }
