@@ -2,16 +2,8 @@ import java.util.Scanner;
 
 public class MLQ{
 
-	int queuePriority[];
-	int completionTime[]; 
-	int turnAroundTime[];
-	int waitingTime[];
-	int arrivalTime[];
-	int processID[];
-	int burstTime[];
-	int flags[]; 
-	int startingTime=0, checkProcessComplete=0;
-	int numOfProcesses=0;
+    int [] queuePriority, completionTime, turnAroundTime, waitingTime, arrivalTime, processID, burstTime, flags;
+	int startingTime=0, checkProcessComplete=0, numOfProcesses=0;
 
 	public MLQ(int pId[], int at[], int bt[], int ct[], int tat[], int wt[], int f[], int qp[], int st, int check, int p){
 		this.processID = pId;

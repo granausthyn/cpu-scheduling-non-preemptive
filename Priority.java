@@ -1,15 +1,6 @@
 class Priority{
-    int [] processId;
-    int [] arrivalTime;
-    int [] burstTime;
-    int [] completionTime ;
-    int [] turnAroundTime;
-    int [] waitingTime;
-    int [] prio;
-    int [] readyQueue;
-    int [] temp;
-    int time;
-    int process;
+    int [] processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, prio, readyQueue, temp;
+    int time, process;
     double sum;
 
    public Priority(int pid[], int at[],int bt[],int temp[],int[] pr, int ct[], int tat[],int wt[],int rq[],int p, int t,double s){

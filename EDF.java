@@ -1,21 +1,8 @@
 class EDF{
-    int [] processId;
-    int [] burstTime;
-    int [] turnAroundTime;
-    int [] waitingTime;
-    int [] completionTime;
-    int [] deadline;
-    int [] temp;
-    int [] startingTime;
-    int [] period;
-    int [] tempPeriod;
-    int [] count;
-    int [] array;
-    int [] readyQueue;
-    int time = 0;
-    int process = 0;
+    int [] processId, burstTime, turnAroundTime, waitingTime, completionTime, deadline, temp, startingTime, period, tempPeriod, count, array, readyQueue;
+    int time = 0, process = 0, lcm = 1;
     double sum = 0;
-    int lcm = 1;
+    
 
 
     public EDF(int pId[], int st[], int bt[], int d[], int period[], int ct[], int tat[],int wt[], int temp[], int tp[], int c[],int a[], int rq[], int t, int p, double s, int l){

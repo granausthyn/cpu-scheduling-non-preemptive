@@ -1,14 +1,6 @@
 class SJF{
-    int [] processId;
-    int [] arrivalTime;
-    int [] burstTime;
-    int [] completionTime ;
-    int [] turnAroundTime;
-    int [] waitingTime;
-    int [] readyQueue;
-    int [] temp;
-    int time;
-    int process;
+    int [] processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, readyQueue, temp;
+    int time, process;
     double sum;
 
    public SJF(int pid[], int at[],int bt[],int temp[],int ct[], int tat[],int wt[],int rq[],int p, int t,double s){

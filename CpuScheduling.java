@@ -1,5 +1,5 @@
 import java.util.*;
-
+// DITO AKO NAG EEXPERIMENT NG CODES AND TRIAL HEHE
 public class CpuScheduling {
 
     static Scanner sc = new Scanner(System.in);
