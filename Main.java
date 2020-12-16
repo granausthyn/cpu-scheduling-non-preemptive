@@ -7,38 +7,42 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
     static String choiceInput, algorithm = "";
     static double sum = 0;
+    static boolean choiceAlgorithm;
 
     public static void main(final String args[]) {
-        do{
-            //get data input from user.
+        do {
+            // get data input from user.
             inputNumberofProcesses();
             inputArrivalTime();
             inputBurstTime();
 
-            //Display the scheduling algorithms[non preemptive]
+            // Display the scheduling algorithms[non preemptive]
             displayAlgorithms();
 
-            //Get input from user on what algorithm is to be used and produce output relative to chosen algorithm.
+            // Get input from user on what algorithm is to be used and produce output
+            // relative to chosen algorithm.
             inputAlgorithm();
             outputAlgorithm();
 
             System.out.print("Would you like to use the program again?[Y/N]: ");
             choiceInput = scan.next();
 
-            //Program continues to run if user inputs yes[y], otherwise program is terminated. 
-            if(choiceInput.equalsIgnoreCase("Y")){
+            // Program continues to run if user inputs yes[y], otherwise program is
+            // terminated.
+            if (choiceInput.equalsIgnoreCase("Y")) {
                 executeAgain = 1;
                 choiceInput = "";
-            }else if(choiceInput.equalsIgnoreCase("N")){{
-                executeAgain = 0;
-                choiceInput = "";
+            } else if (choiceInput.equalsIgnoreCase("N")) {
+                {
+                    executeAgain = 0;
+                    choiceInput = "";
+                }
+
             }
-            
-        }
-    }while(executeAgain==1);
-        //Terminate thhe program if user chooses N.
+        } while (executeAgain == 1);
+        // Terminate thhe program if user chooses N.
         scan.close();
-        System.out.println("Thank you for using our program......\n***Program terminated***"); 
+        System.out.println("Thank you for using our program......\n***Program terminated***");
         System.exit(0);
 
     }
@@ -54,70 +58,91 @@ public class Main {
         System.out.println("[F] Exit\n");
     }
 
-    // get user input
+    // asks user which algorithm he/she would like to execute
     static void inputAlgorithm() {
-        System.out.print("Enter Choice: ");
-        algorithm = scan.next().toUpperCase();
-        // if user input is A-F, proceed with the program
-        if (algorithm.equalsIgnoreCase("A") || algorithm.equalsIgnoreCase("B") || algorithm.equalsIgnoreCase("C")
-                || algorithm.equalsIgnoreCase("D") || algorithm.equalsIgnoreCase("E")
-                || algorithm.equalsIgnoreCase("F")) {
-            if (algorithm.equalsIgnoreCase("F")) {
-                // if user chooses F, the program will terminate
-                System.out.println("Thank you for using our program......\n***Program terminated***");
-                System.exit(0);
+        do {
+            System.out.print("Enter Choice: ");
+            algorithm = scan.next().toUpperCase();
+            // if user input is within choices, program executes to specified choice
+            if (algorithm.equalsIgnoreCase("A") || algorithm.equalsIgnoreCase("B") || algorithm.equalsIgnoreCase("C")
+                    || algorithm.equalsIgnoreCase("D") || algorithm.equalsIgnoreCase("E")
+                    || algorithm.equalsIgnoreCase("F")) {
+                if (algorithm.equalsIgnoreCase("F")) {
+                    // if user choice is to exit [F], the program will be terminated
+                    System.out.println("Thank you for using our program......\n***Program terminated***");
+                    System.exit(0);
+                }
+                // if choiceInput is among A-E, execute proceeding lines of
+                choiceAlgorithm = false;
             }
-            // if choiceInput is A-E, proceed with program
-        }
-        // if user input is not A-F, the method will reiterate
-        else {
-            inputAlgorithm();
-        }
+            // if user input is not from the choices, loop to start
+            else {
+                choiceAlgorithm = true;
+            }
 
-        // check algorithm chosen by the user
-        System.out.println();
+            // check algorithm chosen by the user
+            System.out.println();
+        } while (choiceAlgorithm == true);
+        choiceAlgorithm = true;
+
     }
 
     static void outputAlgorithm() {
+
+        // create an object relative to chosen algorithm. Execute the associated output
+        // for the aformentioned object and display output.
         switch (algorithm) {
 
-            case "A": // if choiceInput = a or A, create an object of FCFS class
+            case "A":
                 FCFS fcfs = new FCFS(processId, arrivalTime, burstTime, temp, completionTime, turnAroundTime,
                         waitingTime, readyQueue, process, time, sum);
-                fcfs.getRunningProcess(); // execute FCFS algorithm
+
+                fcfs.getRunningProcess();
+
                 break;
-            case "B": // if choiceInput = b or B, create an object of SJF class
+            case "B":
 
                 SJF sjf = new SJF(processId, arrivalTime, burstTime, temp, completionTime, turnAroundTime, waitingTime,
                         readyQueue, process, time, sum);
-                sjf.getRunningProcess(); // execute SJF algorithm
+
+                sjf.getRunningProcess();
+
                 break;
-            case "C": // if choiceInput = c or C, create an object of Priority class
-                getPriority();// get Priority for each Process
+            case "C":
+                getPriority();
 
                 Priority prio = new Priority(processId, arrivalTime, burstTime, temp, priority, completionTime,
                         turnAroundTime, waitingTime, readyQueue, process, time, sum);
+
                 prio.getRunningProcess();
+
                 break;
-            case "D": // if choiceInput = d or D, create an object of EDF class
-                getDeadline(); // get Deadline for each Process
-                getPeriod(); // get Period for each Process
+            case "D":
+                getDeadline();
+                getPeriod();
+
                 EDF edf = new EDF(processId, startingTime, burstTime, deadline, period, completionTime, turnAroundTime,
                         waitingTime, temp, tempPeriod, count, array, readyQueue, time, process, sum, lcm);
-                edf.getRunningProcess(); // execute Deadline algorithm
+
+                edf.getRunningProcess();
+
                 break;
-            case "E": // if choiceInput = e or E, create an object of MLQ class
-                System.out.println("MLQ"); // display Queue Choices
+            case "E":
+                System.out.println("MLQ");
                 System.out.println("Input Number of Queues:");
                 System.out.println("[1] First Come First Serve (FCFS)");
                 System.out.println("[2] Shortest Job First (SJF)");
-                getProcessQueue(); // get Queue Number for each Process
+
+                getProcessQueue();
+
                 MLQ mlq = new MLQ(processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, flags,
                         queuePriority, startTime, check, process);
-                mlq.getRunningProcess(); // execute Multi-level Queue algorithm
+
+                mlq.getRunningProcess();
+
                 break;
-            case "F": // if choiceInput = f pr F, choiceInput will be "N"
-                // loop will break
+            case "F": // Exit instead.
+
                 System.out.println("Exit");
                 choiceInput = "N";
                 break;
@@ -125,9 +150,10 @@ public class Main {
     }
 
     static void inputNumberofProcesses() {
-        System.out.print("Input number of processes [2-9]: ");
+        System.out.print("Input the number of processes[2-9]: ");
         boolean done = true;
-        while (done) { // if input is invalid, ask for input again
+        //Loop if user input is invalid.
+        while (done) { 
             if (scan.hasNextInt()) {
                 process = scan.nextInt();
                 if (process < 2 || process > 9) {
@@ -135,13 +161,13 @@ public class Main {
                 }
                 done = false;
             } else {
-                System.out.print("ENTER VALID NUMBER FROM 2 TO 9: ");
+                System.out.print("ENTER VALID INPUTS RANGING FROM 2 TO 9: ");
                 scan.next();
                 continue;
             }
         }
 
-        // insantiate all needed variables
+        //Instantiate all necessary variables required
         processId = new int[process];
         arrivalTime = new int[process];
         burstTime = new int[process];
@@ -166,12 +192,13 @@ public class Main {
     static void inputArrivalTime() {
 
         boolean done = true;
-        System.out.println("Input individual arrival time:");
+        System.out.println("Input respective arrival time:");
 
         for (int i = 0; i < process; i++) {
             done = true;
             System.out.print("AT" + (i + 1) + ": ");
-            while (done) { // if input is invalid, ask for input again
+            //Loop if user input is invalid.
+            while (done) { 
                 if (scan.hasNextInt()) {
                     arrivalTime[i] = scan.nextInt();
                 } else {
@@ -187,9 +214,10 @@ public class Main {
     }
 
     static void inputBurstTime() {
-        System.out.println("Input individual burst time:");
+        System.out.println("Input respective burst time:");
         boolean done = true;
-        for (int i = 0; i < process; i++) { // if input is invalid, ask for input again
+        //Loop if user input is invalid.
+        for (int i = 0; i < process; i++) { 
             done = true;
             System.out.print("BT" + (i + 1) + ": ");
             while (done) {
@@ -210,12 +238,13 @@ public class Main {
 
     static void getDeadline() {
         System.out.println();
-        System.out.println("Input deadline for each process:");
+        System.out.println("Input respective deadline for each process:");
         boolean done = true;
         for (int i = 0; i < process; i++) {
             done = true;
             System.out.print("Deadline " + (i + 1) + ": ");
-            while (done) { // if input is invalid, ask for input again
+            //Loop if user input is invalid.
+            while (done) { 
                 if (scan.hasNextInt()) {
                     deadline[i] = scan.nextInt();
                     startingTime[i] = 0;
@@ -233,12 +262,13 @@ public class Main {
 
     static void getPeriod() {
         System.out.println();
-        System.out.println("Input period for each process:");
+        System.out.println("Input respective period for each process:");
         boolean done = true;
         for (int i = 0; i < process; i++) {
             done = true;
             System.out.print("Period " + (i + 1) + ": ");
-            while (done) { // if input is invalid, ask for input again
+            //Loop if user input is invalid.
+            while (done) { 
                 if (scan.hasNextInt()) {
                     period[i] = scan.nextInt();
                 } else {
@@ -256,9 +286,10 @@ public class Main {
 
     static void getPriority() {
         System.out.println();
-        System.out.println("Input individual priority number:");
+        System.out.println("Input respective individual priority number:");
         boolean done = true;
-        for (int i = 0; i < process; i++) { // if input is invalid, ask for input again
+        //Loop if user input is invalid.
+        for (int i = 0; i < process; i++) { 
             done = true;
             System.out.print("PRIO " + (i + 1) + ": ");
             while (done) {
@@ -280,7 +311,8 @@ public class Main {
         for (int i = 0; i < process; i++) {
             boolean done = true;
             System.out.print("Enter Process " + (i + 1) + " Queue: ");
-            while (done) {// if input is invalid, ask for input again
+             //Loop if user input is invalid.
+            while (done) {
                 if (scan.hasNextInt()) {
                     queuePriority[i] = scan.nextInt();
                     if (queuePriority[i] < 1 || queuePriority[i] > 2) {
