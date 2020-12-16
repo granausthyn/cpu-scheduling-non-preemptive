@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class MLQ{
 
     int [] queuePriority, completionTime, turnAroundTime, waitingTime, arrivalTime, processID, burstTime, flags;

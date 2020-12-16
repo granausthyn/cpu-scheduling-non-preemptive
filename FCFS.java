@@ -8,7 +8,7 @@ public class FCFS{
 		   this.processId = pid;
 		   this.arrivalTime = at;
 		   this.burstTime = bt;
-		   this.temp = temp;f
+		   this.temp = temp;
 		   this.completionTime = ct;
 		   this.turnAroundTime = tat;
 		   this.waitingTime = wt;
