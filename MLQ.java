@@ -18,8 +18,6 @@ public class MLQ{
         
 	}
 
-    
-
     void getRunningProcess(){
         while (true) {
             int c = numOfProcesses, min = 99999;

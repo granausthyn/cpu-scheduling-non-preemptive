@@ -72,7 +72,7 @@ public class Main {
                     System.out.println("Thank you for using our program......\n***Program terminated***");
                     System.exit(0);
                 }
-                // if choiceInput is among A-E, execute proceeding lines of
+                // if choiceInput is among A-E, execute proceeding lines of code
                 choiceAlgorithm = false;
             }
             // if user input is not from the choices, loop to start
@@ -80,7 +80,7 @@ public class Main {
                 choiceAlgorithm = true;
             }
 
-            // check algorithm chosen by the user
+            //check algorithm chosen by the user
             System.out.println();
         } while (choiceAlgorithm == true);
         choiceAlgorithm = true;

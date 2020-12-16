@@ -18,7 +18,7 @@ public class FCFS{
 		   this.sum = s;
    }    
 
-   	//sort process by arrival time using bubblesort algorithm
+   	//sort process by arrival time through the bubblesort algorithm
 	 void sortArrivalTime()
 	    {
 	        for (int i = 0; i < process; i++) 
@@ -45,14 +45,14 @@ public class FCFS{
 	        }
 		}
 
-		//sort process by priority id using bubblesort algorithm
+		//sort process thru priority id by bubblesort algorithm
 		void sortPriorityId()
 	    {
 	        for (int i = 0; i < process; i++) 
 	        {
 	            for (int j = 0; j < process - i - 1; j++) 
 	            {
-					//if j index is greater than (j+1) index, do swap
+					//if j index is greater than (j+1) index, swap values
 	                if (processId[j] > processId[j + 1]) 
 	                {
 	                    int temp = arrivalTime[j];
@@ -86,10 +86,10 @@ public class FCFS{
 
 		void getRunningProcess()
 	    {
-			//sort process by AT
+			//sort process by Arrival Time
 			sortArrivalTime();
 			
-			//compute for CT, TAT, & WT 
+			//computation for Completion Time, Turn Around Time, and Waiting Time 
 	        completionTime[0] = arrivalTime[0] + burstTime[0];
 	        turnAroundTime[0] = completionTime[0] - arrivalTime[0];
 			waitingTime[0] = turnAroundTime[0] - burstTime[0];
@@ -100,21 +100,21 @@ public class FCFS{
 					completionTime[i+1] = burstTime[i+1] + completionTime[i];
 				}
 				else{
-					//if arrival time of next process is less than CT of previous one, add idle time
+					//if the Arrival Time of next process is less than Completion Time of the previous, add idle time
 					idle = arrivalTime[i+1] - completionTime[i];
 					completionTime[i+1] += idle + completionTime[i] + burstTime[i+1];
 				}
 					turnAroundTime[i+1] = completionTime[i+1] - arrivalTime[i+1];
 					waitingTime[i+1] = turnAroundTime[i+1] - burstTime[i+1];
 			}
-			//sort the processes by priority id
+			//sort processes using priority id
 			sortPriorityId();
 
-			//display computed CT,TAT and WT
-			displayTable();
+			//display the computed Completion Time, Turn Around Time, and Waiting Time 
+			showTable();
 		}
 
-		void displayTable(){
+		void showTable(){
 			System.out.println();
 			System.out.println("FCFS");
 			System.out.println("PID\tAT\tBT\tCT\tTAT\tWT");
