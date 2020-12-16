@@ -64,11 +64,11 @@ public class MLQ{
 		float averageWaitingTime=0,averageTurnAroundTime=0;
 
 		System.out.println("PID\tAT\tBT\tCT\tTAT\tWT");
-        System.out.println("--------------------------------------------------");
+        System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         for(int i = 0; i<numOfProcesses;i++){
         System.out.println("P" + (i+1) + "\t" + arrivalTime[i] + "\t" + burstTime[i] +"\t" + completionTime[i]
         + "\t" + turnAroundTime[i] + "\t" + waitingTime[i]);
-        System.out.println("--------------------------------------------------");
+        System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }	
 
         averageWaitingTime = totalWaitingTime / numOfProcesses; //formula for average waiting time

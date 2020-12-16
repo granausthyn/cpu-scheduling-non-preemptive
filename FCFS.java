@@ -8,7 +8,7 @@ public class FCFS{
 		   this.processId = pid;
 		   this.arrivalTime = at;
 		   this.burstTime = bt;
-		   this.temp = temp;
+		   this.temp = temp;f
 		   this.completionTime = ct;
 		   this.turnAroundTime = tat;
 		   this.waitingTime = wt;
@@ -118,11 +118,11 @@ public class FCFS{
 			System.out.println();
 			System.out.println("FCFS");
 			System.out.println("PID\tAT\tBT\tCT\tTAT\tWT");
-			System.out.println("--------------------------------------------------");
+			System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			for(int i = 0; i<process;i++){
 			System.out.println("P" + processId[i] + "\t" + arrivalTime[i] + "\t" + temp[i] +"\t" + completionTime[i]
 			+ "\t" + turnAroundTime[i] + "\t" + waitingTime[i]);
-			System.out.println("--------------------------------------------------");
+            System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			}	
 			System.out.println("Average Turn-around Time:\t" + String.format("%.2f", computeAverage(turnAroundTime)) + " units");
 			System.out.println("Average Waiting Time:\t\t" +String.format("%.2f", computeAverage(waitingTime))+ " units");

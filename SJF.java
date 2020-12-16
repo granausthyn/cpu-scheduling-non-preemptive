@@ -25,11 +25,11 @@ class SJF{
        System.out.println();
        System.out.println("SJF");
        System.out.println("PID\tAT\tBT\tCT\tTAT\tWT");
-       System.out.println("--------------------------------------------------");
+       System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
        for(int i = 0; i<process;i++){
        System.out.println("P" + processId[i] + "\t" + arrivalTime[i] + "\t" + temp[i] +"\t" + completionTime[i]
        + "\t" + turnAroundTime[i] + "\t" + waitingTime[i]);
-       System.out.println("--------------------------------------------------");
+       System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
        }	
 
        System.out.println("Average Turn-around Time:\t" + String.format("%.2f", computeAverage(turnAroundTime)) + " units");

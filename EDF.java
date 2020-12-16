@@ -168,10 +168,10 @@ class EDF{
         System.out.println();
         System.out.println("DEADLINE");
         System.out.println("PID\tBT\tD\tP\tCT\tTAT\tWT");
-        System.out.println("--------------------------------------------------");
+        System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         for(int i = 0; i<process;i++){
             System.out.println("P" + (processId[i]+1)+ "\t" + burstTime[i] + "\t" + temp[i] + "\t" + tempPeriod[i] + "\t" + completionTime[i] + "\t" + turnAroundTime[i] + "\t" + waitingTime[i]);
-            System.out.println("--------------------------------------------------");
+            System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }	
         System.out.println("Average Turn-around Time:\t" + String.format("%.2f", computeAverage(turnAroundTime)) + " units");
         System.out.println("Average Waiting Time:\t\t" +String.format("%.2f", computeAverage(waitingTime))+ " units");

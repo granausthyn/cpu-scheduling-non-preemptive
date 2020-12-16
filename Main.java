@@ -11,16 +11,16 @@ public class Main {
     public static void main(final String args[]) {
         do{
             //get data input from user.
-            getNumberOfProcess();
-            getArrivalTime();
-            getBurstTime();
+            inputNumberofProcesses();
+            inputArrivalTime();
+            inputBurstTime();
 
             //Display the scheduling algorithms[non preemptive]
-            displayChoices();
+            displayAlgorithms();
 
             //Get input from user on what algorithm is to be used and produce output relative to chosen algorithm.
-            getAlgorithm();
-            selectAlgorithm();
+            inputAlgorithm();
+            outputAlgorithm();
 
             System.out.print("Would you like to use the program again?[Y/N]: ");
             choiceInput = scan.next();
@@ -44,18 +44,18 @@ public class Main {
     }
 
     // display Algorithm Choices
-    static void displayChoices() {
-        System.out.println("CPU Scheduling Algorithm:");
-        System.out.println("[A] First Come First Serve (FCFS)");
-        System.out.println("[B] Shortest Job First (SJF)");
-        System.out.println("[C] Priority (Prio)");
+    static void displayAlgorithms() {
+        System.out.println("\nChoose CPU Scheduling Algorithm[Non-Preemptive]: ");
+        System.out.println("[A] First Come First Serve(FCFS)");
+        System.out.println("[B] Shortest Job First(SJF)");
+        System.out.println("[C] Priority");
         System.out.println("[D] Deadline");
-        System.out.println("[E] Multilevel Queue (MLQ)");
-        System.out.println("[F] Exit");
+        System.out.println("[E] Multilevel Queue(MLQ)");
+        System.out.println("[F] Exit\n");
     }
 
     // get user input
-    static void getAlgorithm() {
+    static void inputAlgorithm() {
         System.out.print("Enter Choice: ");
         algorithm = scan.next().toUpperCase();
         // if user input is A-F, proceed with the program
@@ -71,14 +71,14 @@ public class Main {
         }
         // if user input is not A-F, the method will reiterate
         else {
-            getAlgorithm();
+            inputAlgorithm();
         }
 
         // check algorithm chosen by the user
         System.out.println();
     }
 
-    static void selectAlgorithm() {
+    static void outputAlgorithm() {
         switch (algorithm) {
 
             case "A": // if choiceInput = a or A, create an object of FCFS class
@@ -124,14 +124,14 @@ public class Main {
         }
     }
 
-    static void getNumberOfProcess() {
+    static void inputNumberofProcesses() {
         System.out.print("Input number of processes [2-9]: ");
         boolean done = true;
         while (done) { // if input is invalid, ask for input again
             if (scan.hasNextInt()) {
                 process = scan.nextInt();
                 if (process < 2 || process > 9) {
-                    getNumberOfProcess();
+                    inputNumberofProcesses();
                 }
                 done = false;
             } else {
@@ -163,7 +163,7 @@ public class Main {
         System.out.println();
     }
 
-    static void getArrivalTime() {
+    static void inputArrivalTime() {
 
         boolean done = true;
         System.out.println("Input individual arrival time:");
@@ -186,7 +186,7 @@ public class Main {
 
     }
 
-    static void getBurstTime() {
+    static void inputBurstTime() {
         System.out.println("Input individual burst time:");
         boolean done = true;
         for (int i = 0; i < process; i++) { // if input is invalid, ask for input again
