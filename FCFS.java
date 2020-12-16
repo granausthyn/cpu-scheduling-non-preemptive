@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class FCFS{
 
 
-    // Function to find the waiting time for all 
+    public FCFS(int[] processId, int[] arrivalTime, int[] burstTime, int[] temp, int[] completionTime,
+			int[] turnAroundTime, int[] waitingTime, int[] readyQueue, int process, int time, double sum) {
+	}
+
+	// Function to find the waiting time for all 
     // processes 
     static void findWaitingTime(int processes[], int n, int burstTime[], int waitingTime[], int arrivalTime[]) 
     { 
