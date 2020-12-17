@@ -12,9 +12,11 @@ De Vera, Gran Austhyn
 import java.util.Scanner;
 
 public class Main {
-    static int[] processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, priority, deadline,
-            period, flags, queuePriority, tempPeriod, array, startingTime, readyQueue, runningQueue, count, temp;
-    static int time = 0, process = 0, output = 0, lcm = 1, startTime = 0, check = 0, executeAgain;
+    static int[] processId, arrivalTime, burstTime, completionTime, turnAroundTime,
+     waitingTime, priority, deadline, period, flags, queuePriority, tempPeriod, 
+     array, startingTime, readyQueue, runningQueue, count, temp;
+    static int time = 0, process = 0, output = 0, lcm = 1, startTime = 0, check = 0, 
+    executeAgain;
     static Scanner scan = new Scanner(System.in);
     static String choiceInput, algorithm = "";
     static double sum = 0;
@@ -75,9 +77,9 @@ public class Main {
             System.out.print("Enter Choice: ");
             algorithm = scan.next().toUpperCase();
             // if user input is within choices, program executes to specified choice
-            if (algorithm.equalsIgnoreCase("A") || algorithm.equalsIgnoreCase("B") || algorithm.equalsIgnoreCase("C")
-                    || algorithm.equalsIgnoreCase("D") || algorithm.equalsIgnoreCase("E")
-                    || algorithm.equalsIgnoreCase("F")) {
+            if (algorithm.equalsIgnoreCase("A") || algorithm.equalsIgnoreCase("B") 
+            || algorithm.equalsIgnoreCase("C") || algorithm.equalsIgnoreCase("D") 
+            || algorithm.equalsIgnoreCase("E") || algorithm.equalsIgnoreCase("F")) {
                 if (algorithm.equalsIgnoreCase("F")) {
                     // if user choice is to exit [F], the program will be terminated
                     System.out.println("Thank you for using our program......\n***Program terminated***");
@@ -105,16 +107,18 @@ public class Main {
         switch (algorithm) {
 
             case "A":
-                FCFS fcfs = new FCFS(processId, arrivalTime, burstTime, temp, completionTime, turnAroundTime,
-                        waitingTime, readyQueue, process, time, sum);
+                FCFS fcfs = new FCFS(processId, arrivalTime, burstTime, temp, 
+                completionTime, turnAroundTime, waitingTime, readyQueue, process, 
+                time, sum);
 
                 fcfs.getRunningProcess();
 
                 break;
             case "B":
 
-                SJF sjf = new SJF(processId, arrivalTime, burstTime, temp, completionTime, turnAroundTime, waitingTime,
-                        readyQueue, process, time, sum);
+                SJF sjf = new SJF(processId, arrivalTime, burstTime, temp, 
+                completionTime, turnAroundTime, waitingTime, readyQueue, process, 
+                time, sum);
 
                 sjf.getRunningProcess();
 
@@ -122,8 +126,9 @@ public class Main {
             case "C":
                 getPriority();
 
-                Priority prio = new Priority(processId, arrivalTime, burstTime, temp, priority, completionTime,
-                        turnAroundTime, waitingTime, readyQueue, process, time, sum);
+                Priority prio = new Priority(processId, arrivalTime, burstTime, temp, 
+                priority, completionTime, turnAroundTime, waitingTime, readyQueue, 
+                process, time, sum);
 
                 prio.getRunningProcess();
 
@@ -132,8 +137,9 @@ public class Main {
                 getDeadline();
                 getPeriod();
 
-                EDF edf = new EDF(processId, startingTime, burstTime, deadline, period, completionTime, turnAroundTime,
-                        waitingTime, temp, tempPeriod, count, array, readyQueue, time, process, sum, lcm);
+                EDF edf = new EDF(processId, startingTime, burstTime, deadline, period, 
+                completionTime, turnAroundTime,waitingTime, temp, tempPeriod, count, array, 
+                readyQueue, time, process, sum, lcm);
 
                 edf.getRunningProcess();
 
@@ -146,8 +152,8 @@ public class Main {
 
                 getProcessQueue();
 
-                MLQ mlq = new MLQ(processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, flags,
-                        queuePriority, startTime, check, process);
+                MLQ mlq = new MLQ(processId, arrivalTime, burstTime, completionTime, turnAroundTime,
+                 waitingTime, flags, queuePriority, startTime, check, process);
 
                 mlq.getRunningProcess();
 
