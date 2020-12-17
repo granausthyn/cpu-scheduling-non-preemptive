@@ -1,3 +1,14 @@
+/*
+
+OS FINAL PROJECT 26012:
+
+Aguayo, Jason Monty O.
+dela Rosa, Maria Francesca
+De Vera, Gran Austhyn
+
+3 - ITF
+
+*/
 class EDF{
     int [] processId, burstTime, turnAroundTime, waitingTime, completionTime, deadline, temp, startingTime, period, tempPeriod, count, array, readyQueue;
     int time = 0, process = 0, lcm = 1;

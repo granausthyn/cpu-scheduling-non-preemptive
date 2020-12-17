@@ -1,3 +1,14 @@
+/*
+
+OS FINAL PROJECT 26012:
+
+Aguayo, Jason Monty O.
+dela Rosa, Maria Francesca
+De Vera, Gran Austhyn
+
+3 - ITF
+
+*/
 class SJF{
     int [] processId, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime, readyQueue, temp;
     int time, process;

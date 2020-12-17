@@ -1,3 +1,14 @@
+/*
+
+OS FINAL PROJECT 26012:
+
+Aguayo, Jason Monty O.
+dela Rosa, Maria Francesca
+De Vera, Gran Austhyn
+
+3 - ITF
+
+*/
 public class MLQ{
 
     int [] queuePriority, completionTime, turnAroundTime, waitingTime, arrivalTime, processID, burstTime, flags;
